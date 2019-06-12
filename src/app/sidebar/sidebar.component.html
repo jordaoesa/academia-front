@@ -1,0 +1,47 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer
+               class="sidenav" fixedInViewport
+               [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+               [mode]="(isHandset$ | async) ? 'over' : 'side'"
+               [opened]="(isHandset$ | async) === false">
+    <mat-toolbar color="primary">Menu</mat-toolbar>
+    <mat-nav-list>
+      <a mat-list-item routerLink="/home/dashboard">
+        <mat-icon mat-list-icon>dashboard</mat-icon>
+        <h4 mat-line>Dashboard</h4>
+      </a>
+      <a mat-list-item routerLink="/home/users">
+        <mat-icon mat-list-icon>account_circle</mat-icon>
+        <h4 mat-line>Usuários</h4>
+      </a>
+      <a mat-list-item routerLink="/">
+        <mat-icon mat-list-icon>exit_to_app</mat-icon>
+        <h4 mat-line>Sair</h4>
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <span>Academia da Balada</span>
+
+      <span class="example-spacer"></span>
+      <small class="font-12">{{username}}</small>
+      <button mat-icon-button (click)="logout()">
+        <mat-icon aria-label="Sair">exit_to_app</mat-icon>
+      </button>
+
+    </mat-toolbar>
+    <!-- Add Content Here -->
+    <div style="padding: 30px">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

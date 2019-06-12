@@ -1,0 +1,36 @@
+.login-container {
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  margin: auto;
+}
+
+.logo {
+  margin: auto;
+  max-width: 300px;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  height: 80vh;
+}
+
+.login-container > * {
+  width: 100%;
+}
+
+button {
+  margin-top: 20px;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.green-button {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+}
