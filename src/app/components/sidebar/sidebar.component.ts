@@ -11,7 +11,6 @@ import {AuthService} from '../../core/services/auth.service';
   styleUrls: ['./sidebar.component.scss']
 })
 export class SidebarComponent {
-  public username: string;
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
@@ -22,9 +21,7 @@ export class SidebarComponent {
     private breakpointObserver: BreakpointObserver,
     private router: Router,
     private auth: AuthService
-  ) {
-    this.username = 'admin';
-  }
+  ) {}
 
   logout() {
     this.auth.logout()
@@ -34,6 +31,10 @@ export class SidebarComponent {
       .catch(err => {
         this.router.navigate(['/']);
       });
+  }
+
+  loggedUser() {
+    return this.auth.getLoggedUser();
   }
 
 }

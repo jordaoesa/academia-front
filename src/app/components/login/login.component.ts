@@ -23,12 +23,12 @@ export class LoginComponent implements OnInit {
   login(): void {
     this.auth.login(this.loginForm.value)
       .then(user => {
-        this.snackBar.open(`logged as ${user['name']}`, '', {duration: 2000});
+        this.snackBar.open(`Logado como ${user['name']}`, 'Fechar', {duration: 2000});
         this.router.navigate(['home']);
       })
       .catch(err => {
         console.log(err);
-        this.snackBar.open(`Ocorreu um erro ao tentar logar no sistema: ${err['error']['message']}`, '', {duration: 2000});
+        this.snackBar.open(`${err['error']['message']}`, 'Fechar', {duration: 2000});
       });
   }
 
