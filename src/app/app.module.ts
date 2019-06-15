@@ -4,7 +4,7 @@ import {NgModule} from '@angular/core';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {SidebarComponent} from './sidebar/sidebar.component';
+import {SidebarComponent} from './components/sidebar/sidebar.component';
 import {LayoutModule} from '@angular/cdk/layout';
 import {
   MatButtonModule,
@@ -18,9 +18,9 @@ import {
   MatSnackBarModule,
   MatToolbarModule, MatTableModule, MatPaginatorModule, MatSortModule, MatSelectModule, MatRadioModule
 } from '@angular/material';
-import {DashboardComponent} from './dashboard/dashboard.component';
-import {UsersComponent} from './users/users.component';
-import {LoginComponent} from './login/login.component';
+import {DashboardComponent} from './components/dashboard/dashboard.component';
+import {UsersComponent} from './components/users/users.component';
+import {LoginComponent} from './components/login/login.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
