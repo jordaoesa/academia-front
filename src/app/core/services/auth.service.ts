@@ -8,6 +8,7 @@ import {env} from 'src/environments/environment';
 export class AuthService {
 
   private token = 'token';
+  private logged = 'logged_user';
 
   constructor(
     private http: HttpClient
@@ -18,6 +19,7 @@ export class AuthService {
     return new Promise((resolve, reject) => {
       this.http.post(`${env.back_url}/auth/login`, {username, password}, {observe: 'response'}).subscribe(data => {
           localStorage.setItem(this.token, `${data.headers.get('authorization')}`);
+          localStorage.setItem(this.logged, `${data.body['name']}`);
           resolve(data.body);
         }, err => {
           reject(err);
@@ -30,7 +32,7 @@ export class AuthService {
   logout() {
     return new Promise((resolve, reject) => {
       this.http.post(`${env.back_url}/auth/logout`, {}).subscribe(value => {
-          localStorage.removeItem(this.token);
+          localStorage.clear();
           resolve();
         }, error => {
           localStorage.removeItem(this.token);
@@ -44,6 +46,13 @@ export class AuthService {
   isAuthenticated(): boolean {
     const token = localStorage.getItem(this.token);
     return !!token;
+  }
+
+  getLoggedUser(): string {
+    if (this.isAuthenticated()) {
+      return localStorage.getItem(this.logged);
+    }
+    return 'error';
   }
 
 }
