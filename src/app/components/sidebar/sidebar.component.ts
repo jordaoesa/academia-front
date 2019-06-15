@@ -3,6 +3,7 @@ import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
 import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
 import {Router} from '@angular/router';
+import {AuthService} from '../../core/services/auth.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -19,16 +20,20 @@ export class SidebarComponent {
 
   constructor(
     private breakpointObserver: BreakpointObserver,
-    private router: Router
+    private router: Router,
+    private auth: AuthService
   ) {
-
     this.username = 'admin';
-
   }
 
   logout() {
-    // TODO: delete possible token
-    this.router.navigate(['/']);
+    this.auth.logout()
+      .then(res => {
+        this.router.navigate(['/']);
+      })
+      .catch(err => {
+        this.router.navigate(['/']);
+      });
   }
 
 }

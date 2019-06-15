@@ -1,3 +1,4 @@
-export const environment = {
-  production: true
+export const env = {
+  production: true,
+  back_url: 'http://academia-back.herokuapp.com'
 };

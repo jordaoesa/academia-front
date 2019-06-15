@@ -22,6 +22,8 @@ import {DashboardComponent} from './components/dashboard/dashboard.component';
 import {UsersComponent} from './components/users/users.component';
 import {LoginComponent} from './components/login/login.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
+import {AuthInterceptor} from './core/interceptors/auth.service';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,6 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     DashboardComponent,
     UsersComponent,
     LoginComponent,
-    UsersComponent
   ],
   imports: [
     BrowserModule,
@@ -54,9 +55,10 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     MatSortModule,
     MatTableModule,
     MatSelectModule,
-    MatRadioModule
+    MatRadioModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}],
   bootstrap: [AppComponent]
 })
 export class AppModule {
