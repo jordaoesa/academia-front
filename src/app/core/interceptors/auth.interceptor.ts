@@ -16,7 +16,7 @@ export class AuthInterceptor implements HttpInterceptor {
 
     if (req.url.includes(env.back_url) && token) {
       //adding token as authentication header
-      let asd = req.clone({headers: req.headers.set('Authorization', token)});
+      let asd = req.clone({headers: req.headers.set('Authorization', `Bearer ${token}`)});
       return next.handle(asd);
     }
 

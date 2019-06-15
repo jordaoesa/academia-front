@@ -23,7 +23,8 @@ import {UsersComponent} from './components/users/users.component';
 import {LoginComponent} from './components/login/login.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
-import {AuthInterceptor} from './core/interceptors/auth.service';
+import {AuthInterceptor} from './core/interceptors/auth.interceptor';
+import {AuthGuard} from './core/guard/auth.guard';
 
 @NgModule({
   declarations: [
@@ -58,7 +59,10 @@ import {AuthInterceptor} from './core/interceptors/auth.service';
     MatRadioModule,
     HttpClientModule
   ],
-  providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}],
+  providers: [
+    AuthGuard,
+    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
+    ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

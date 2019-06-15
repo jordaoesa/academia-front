@@ -17,7 +17,7 @@ export class AuthService {
   login({username, password}) {
     return new Promise((resolve, reject) => {
       this.http.post(`${env.back_url}/auth/login`, {username, password}, {observe: 'response'}).subscribe(data => {
-          localStorage.setItem(this.token, `Bearer ${data.headers.get('authorization')}`);
+          localStorage.setItem(this.token, `${data.headers.get('authorization')}`);
           resolve(data.body);
         }, err => {
           reject(err);
@@ -40,4 +40,10 @@ export class AuthService {
       );
     });
   }
+
+  isAuthenticated(): boolean {
+    const token = localStorage.getItem(this.token);
+    return !!token;
+  }
+
 }

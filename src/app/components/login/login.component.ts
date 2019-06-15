@@ -21,7 +21,6 @@ export class LoginComponent implements OnInit {
   ) {}
 
   login(): void {
-    console.log(this.loginForm.value);
     this.auth.login(this.loginForm.value)
       .then(user => {
         this.snackBar.open(`logged as ${user['name']}`, '', {duration: 2000});
